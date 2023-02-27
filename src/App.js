@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{ useState } from 'react'
+import './App.css'; 
+import Title from './Components/Title' 
+import Home from './Components/Home' 
+import Counter from './Components/Counter'; 
+import About from './Components/About';
 
-function App() {
+
+function App() {  
+
+  const [isHome,setIsHome] = useState(1);
+  const clickHandler=()=>{
+    setIsHome((preState=>!preState));
+  }
+
+  let disc = "";
+
+  if(isHome){
+    disc="Go to About page.";
+  }
+  else{
+    disc="Go to Home page.";
+  } 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       {/* <Title text="Good Morning" /> 
+       <Title text="Good Afternoon" />
+       <Title text="Good Night" /> 
+       <Home text="Goood !!!" />  */}
+       {isHome? <Home />:<About />}
+       <button onClick={clickHandler}> { disc } </button>
+       <Counter />  
     </div>
   );
 }
 
-export default App;
+export default App; 
